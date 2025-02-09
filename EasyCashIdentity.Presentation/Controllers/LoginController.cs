@@ -33,7 +33,7 @@ namespace EasyCashIdentityProject.PresentationLayer.Controllers
 
                 if (user.EmailConfirmed == true)
                 {
-                    return RedirectToAction("Index", "MyProfile");
+                    return RedirectToAction("Index", "MyAccounts");
                 }
             }
             return View();
