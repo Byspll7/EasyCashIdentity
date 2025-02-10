@@ -2,7 +2,6 @@
 using EasyCashIdentity.DataAccessLayer.Concrete;
 using EasyCashIdentity.DataAccessLayer.Repositories;
 using EasyCashIdentity.EntityLayer.Concrete;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace EasyCashIdentity.DataAccessLayer.EntityFramework
 {
-    public class EfCustomerAccocuntProcessDal : GenericRepository<CustomerAccountProcess>, ICustomerAccocuntProcessDal
+    public class EfCustomerAccountDal : GenericRepository<CustomerAccount>, ICustomerAccountDal
     {
-        public List<CustomerAccountProcess> MyLastProcess(int id)
+        public List<CustomerAccount> GetCustomerAccountsList(int id)
         {
             using var context = new Context();
-            var values = context.CustomerAccountProcesses.Include(y=>y.CustomerAccount).Where(x => x.ReceiverId == id || x.SenderId==id).ToList();
+            var values = context.CustomerAccounts.Where(x => x.AppUserId == id).ToList();
             return values;
         }
     }
